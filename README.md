@@ -105,4 +105,17 @@ Bu proje, Amsterdam Schiphol Havalimanı'na gelen ve giden uçuşların listesin
      npm run start
      ```
 
+## Proje Görüntüleri
+
+<div>
+  <img src="applicationImages/web1.png" alt="Resim 1" width="45%" />
+  <img src="applicationImages/web2.png" alt="Resim 2" width="45%" />
+</div>
+
+<div>
+  <img src="applicationImages/mobile1.png" alt="Resim 1" width="30%" />
+  <img src="applicationImages/mobile2.png" alt="Resim 2" width="30%" />
+  <img src="applicationImages/mobile3.png" alt="Resim 3" width="30%" />
+</div>
+
 
