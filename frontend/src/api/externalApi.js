@@ -36,7 +36,7 @@ export const fetchDestinationsAPI = async (page) => {
     const response = await api.get('/destinations', {
         params: {
             page,
-            sort: '+iata',
+            sort: 'city',
         },
     });
     return response.data.destinations;
