@@ -16,3 +16,6 @@ frontend/tailwind.config.js
 # Environment dosyaları
 frontend/.env
 backend/.env
+
+# Uygulama görüntüleri
+/applicationImages
