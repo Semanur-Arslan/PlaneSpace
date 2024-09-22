@@ -1,0 +1,18 @@
+# Node.js ve React modülleri
+frontend/node_modules/
+backend/node_modules/
+
+# Log dosyaları
+frontend/npm-debug.log
+backend/npm-debug.log
+
+# Build klasörleri
+frontend/build/
+backend/build/
+
+# Tailwind ve diğer cache dosyaları
+frontend/tailwind.config.js
+
+# Environment dosyaları
+frontend/.env
+backend/.env
