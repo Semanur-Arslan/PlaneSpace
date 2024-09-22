@@ -10,12 +10,12 @@ Bu proje, Amsterdam Schiphol Havalimanı'na gelen ve giden uçuşların listesin
 #### Uçuş Bilgileri Listesi
 - Anasayfada uçuş bilgileri listelenir ve kullanıcılar kalkış veya varış noktası, tarih ve uçuş yönüne göre filtreleme yapabilir.
 
-#### Dinamik Nokta Atamaları
-- Kalkış noktası seçilirse iniş noktası Amsterdam olarak atanır.
-- İniş noktası seçilirse kalkış noktası Amsterdam Schiphol Havalimanı olarak atanır.
-
-#### Tarih ve Yön Filtreleme
-- Uçuşlar, sadece yöne ya da hem yön hem de tarihe göre filtrelenebilir.
+#### Filtreleme
+- Kalkış noktası seçilirse varış noktası Amsterdam Schiphol Havalimanı olarak atanır.Varış noktası seçilirse kalkış noktası Amsterdam Schiphol Havalimanı olarak atanır.
+- Kalkış veya varış noktasına göre filtreleme yapılır.
+- Yön seçimine göre (A veya D) filtreleme yapılır.
+- Kalkış/Varış noktası ve tarihe göre birlikte filtreleme yapılır.
+- Yön seçimi (A veya D) ve tarihe göre birlikte filtreleme yapılır.
 
 #### Rezervasyon Uyarısı
 - Geçmiş tarihli uçuşlara rezervasyon yapılamaz.
@@ -23,16 +23,17 @@ Bu proje, Amsterdam Schiphol Havalimanı'na gelen ve giden uçuşların listesin
 
 #### Rezervasyon Yönetimi
 - Kullanıcılar gelecekteki uçuşlar için rezervasyon yapabilir.
-- "Rezervasyonlarım" sayfasından yapılan rezervasyonları görüntüleyebilir veya silebilir.
+- "Rezervasyonlarım" sayfasından yapılan rezervasyonları görüntüleyebilir ve silebilir.
 
 #### Responsive Tasarım
 - Tüm cihazlarda kullanılabilirlik sağlanmıştır, mobil ve masaüstü cihazlarla uyumludur.
 
 #### API Entegrasyonu
-- Uçuş bilgileri ve kalkış-iniş noktaları, **developer.schiphol.nl** tarafından sağlanan API ile alınmaktadır.
+- Uçuş bilgileri ve kalkış-varış noktaları, **developer.schiphol.nl** tarafından sağlanan API ile alınmaktadır.
 
 #### Sayfalama
-- API, başlangıçta 20 uçuş bilgisi sağlamaktadır ve kullanıcı işlemlerine göre daha fazla veri sayfalandırılarak yüklenir.
+- API, başlangıçta 20 uçuş bilgisi sağlamaktadır ve kullanıcı işlemlerine(buton) göre daha fazla veri yüklenir.
+- API, başlangıçta 20 kalkış/varış noktası sağlamaktadır ve kullanıcı işlemlerine(scroll) göre daha fazla veri yüklenir.
 
 #### Backend Entegrasyonu
 - Node.js ile oluşturulmuş backend sistemi aracılığıyla rezervasyon kaydetme, listeleme ve silme işlemleri MongoDB üzerinde gerçekleştirilir.
@@ -44,7 +45,7 @@ Bu proje, Amsterdam Schiphol Havalimanı'na gelen ve giden uçuşların listesin
 ## Kullandığım Teknolojiler
 
 ### Frontend
-- 🟢 React
+- 🟢 React.js
 - 🔄 Redux
 - 🛣️ React Router
 - 🎨 Tailwind CSS
