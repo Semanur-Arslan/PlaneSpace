@@ -7,7 +7,6 @@ import HomePage from './pages/HomePage/index';
 import MyFlightsPage from './pages/MyFlightsPage/index';
 
 function App() {
-  // Menü durumunu yönetmek için state tanımladım.
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (

@@ -1,26 +1,27 @@
+// Filtreleme işlemleri için oluşturduğum component
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { IoIosAirplane } from "react-icons/io";
-import { FaPlaneDeparture, FaPlaneArrival } from "react-icons/fa";
 import { fetchDestinations } from "../../redux/slices/destinationsSlice";
 import { fetchFlights, resetFlights } from "../../redux/slices/flightsSlice";
+import { setDirection, setScheduleDate, setRoute } from "../../redux/slices/flightParamsSlice";
 import SelectAirport from "../SelectAirport";
 import SelectDate from '../SelectDate/index';
 import formatDate from "../../utils/dateFormatter";
-import { setDirection, setScheduleDate, setRoute } from "../../redux/slices/flightParamsSlice";
+import { IoIosAirplane } from "react-icons/io";
+import { FaPlaneDeparture, FaPlaneArrival } from "react-icons/fa";
 
 export default function Index() {
 
     const dispatch = useDispatch();
+    const { list: destinations, page: optionPage } = useSelector((state) => state.destinations);
     const { route } = useSelector(state => state.flightParams);
-
     const [selected, setSelected] = useState("round-trip");
     const [departureAirport, setDepartureAirport] = useState("");
     const [arrivalAirport, setArrivalAirport] = useState("");
     const [departureDate, setDepartureDate] = useState(null);
     const [arrivalDate, setArrivalDate] = useState(null);
 
-    //Eğer yön seçilmişse, kalkış ve varış noktasına göre sıralama yapmaması için seçili değeri sıfırladım.
+    // Eğer yön componentinde ,yön seçilmişse kalkış ve varış noktasına göre sıralama yapmaması için seçili değeri sıfırladım.
     useEffect(() => {
         if (!route) {
             setDepartureAirport("");
@@ -28,15 +29,7 @@ export default function Index() {
         }
     }, [route]);
 
-    // Varış noktalarını select içerisinde listelemek için Redux'a kaydettiğim destination değerlerini aldım.
-    const { list: destinations, page: optionPage } = useSelector((state) => state.destinations);
-
-    // Api isteğini her gerçekleştirdiğimde 20 adet veri gelmektedir. Select içerisinde scroll yaptıkça bir sonraki veri setinin yüklenmsi için istek fonksiyonunu çağırdım.
-    const fetchMoreDestinations = () => {
-        dispatch(fetchDestinations(optionPage));
-    };
-
-    // Select yapısında seçilen değerleri alan fonksiyonlar oluşturdum
+    // Select yapısında seçilen değerleri alan fonksiyonları oluşturdum
     const handleDepartureSelect = (airport) => {
         setDepartureAirport(airport);
         setArrivalAirport({ publicName: { english: "Amsterdam, Schiphol" } });
@@ -47,29 +40,14 @@ export default function Index() {
         setDepartureAirport({ publicName: { english: "Amsterdam, Schiphol" } });
     };
 
-    //Butona tıklandığında arama verilerine göre API isteği yapan fonksiyonu çalıştırıyorum
+    // Butona tıklandığında arama verilerine göre API isteği yapan fonksiyonu çalıştırıyorum
     const showFlights = () => {
-        dispatch(resetFlights());
 
+        dispatch(resetFlights());
         const page = 0;
         const selectRoute = departureAirport?.iata || departureAirport?.icao || arrivalAirport?.iata || arrivalAirport?.icao || '';
-        const selectDirection = departureAirport.publicName?.english !== 'Amsterdam, Schiphol'
-            ? 'A'
-            : arrivalAirport.publicName?.english !== 'Amsterdam, Schiphol'
-                ? 'D'
-                : '';
-
-        const selectScheduleDate = departureDate
-            ? formatDate(departureDate)
-            : arrivalDate
-                ? formatDate(arrivalDate)
-                : '';
-
-
-        // Filtre seçimlerini redux'a kaydettim, çünkü diğer filtreleme işlemlerinde bu değerlerde değişiklik yapmak isteyebilirim
-        dispatch(setRoute(selectRoute));
-        dispatch(setDirection(selectDirection));
-        dispatch(setScheduleDate(selectScheduleDate))
+        const selectDirection = departureAirport.publicName?.english !== 'Amsterdam, Schiphol' ? 'A' : arrivalAirport.publicName?.english !== 'Amsterdam, Schiphol' ? 'D' : '';
+        const selectScheduleDate = departureDate ? formatDate(departureDate) : arrivalDate ? formatDate(arrivalDate) : '';
 
         const filters = {
             page,
@@ -79,8 +57,17 @@ export default function Index() {
         };
 
         dispatch(fetchFlights(filters));
+
+        // Filtre seçimlerini redux'a kaydettim, çünkü diğer filtreleme işlemlerinde bu değerlerde değişiklik yapmak isteyebilirim
+        dispatch(setRoute(selectRoute));
+        dispatch(setDirection(selectDirection));
+        dispatch(setScheduleDate(selectScheduleDate))
     };
 
+    // Api isteğini her gerçekleştirdiğimde 20 adet veri gelmektedir. Select içerisinde scroll yaptıkça bir sonraki veri setinin yüklenmsi için istek fonksiyonunu çağırdım.
+    const fetchMoreDestinations = () => {
+        dispatch(fetchDestinations(optionPage));
+    };
 
     return (
         <div className='bg-white p-4 rounded-lg mb-4'>

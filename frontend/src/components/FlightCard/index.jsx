@@ -1,3 +1,4 @@
+// Uçuş Kartı için oluşturduğum component
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import formatTime from "../../utils/timeFormatter";
@@ -7,7 +8,7 @@ import Toast from '../ToastMessage/index'
 import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu";
 import { IoIosAirplane } from "react-icons/io";
 
-//Burada props olarak uçuş verisini aldım.
+// Burada props olarak uçuş verisini aldım.
 export default function Index({ flight }) {
 
   const ref = useRef(null);
@@ -15,15 +16,7 @@ export default function Index({ flight }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [toast, setToast] = useState({ message: '', type: '' });
 
-  //Toast Mesajı işlemleri
-  const showToast = (msg, type) => {
-    setToast({ message: msg, type });
-  };
-  const closeToast = () => {
-    setToast({ message: '', type: '' });
-  };
-
-  //Uçuş verisi içerisindeki kullanacağım değerleri tanımladım.
+  // Uçuş verisi içerisindeki kullanacağım değerleri tanımladım.
   const {
     estimatedLandingTime,
     actualOffBlockTime,
@@ -39,34 +32,9 @@ export default function Index({ flight }) {
   // Kalkış / Varış noktası adı
   const destinationIATA = route.destinations[route.destinations.length - 1]
 
-  // Tarih nesnesine saat ekleyen veya çıkaran fonksiyon
-  const adjustTime = (timeString, hours) => {
-    if (!timeString) return null;
-    const date = new Date(timeString);
-    date.setHours(date.getHours() + hours);
-    return formatTime(date);
-  };
-
-  //Kart yüksekliği için fonksiyon
-  const toggleDetails = () => {
-    setIsExpanded(!isExpanded);
-  };
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setIsExpanded(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
-
-
-  //Geçmiş tarihler için rezervasyon yapılmaması için kontrol ekledim
-  //Rezervasyon için keydedeceğim verileri tanımladım ve api isteği fonksiyonunu çalıştırdım.
-  //API den gelen yanıta göre toast mesajı ekledim ve sayfa yönlendirmesini ekledim.
+  // Geçmiş tarihler için rezervasyon yapılmaması için kontrol ekledim
+  // Rezervasyon için keydedeceğim verileri tanımladım ve api isteği fonksiyonunu çalıştırdım.
+  // API den gelen yanıta göre toast mesajı ekledim ve sayfa yönlendirmesini ekledim.
   const handleBookFlight = async () => {
 
     const currentDate = new Date();
@@ -99,6 +67,34 @@ export default function Index({ flight }) {
     }
   };
 
+  // Toast Mesajı işlemleri
+  const showToast = (msg, type) => { setToast({ message: msg, type })};
+  const closeToast = () => { setToast({ message: '', type: '' })};
+
+  // Show-Hide kart yapısı için işlemler
+  const toggleDetails = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsExpanded(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
+  // Tarih nesnesine saat ekleyen veya çıkaran fonksiyon
+  const adjustTime = (timeString, hours) => {
+    if (!timeString) return null;
+    const date = new Date(timeString);
+    date.setHours(date.getHours() + hours);
+    return formatTime(date);
+  };
 
   return (
     <>
@@ -189,7 +185,6 @@ export default function Index({ flight }) {
       </div>
 
       {toast.message && <Toast message={toast.message} type={toast.type} onClose={closeToast} />}
-
     </>
   )
 }

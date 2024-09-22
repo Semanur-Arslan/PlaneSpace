@@ -1,10 +1,12 @@
-//Success ve Error durumuna göre uygulamanın istediğim sayfasında toast mesajı göstememi sağlayan component
+//Success ve Error durumuna göre uygulamanın istediğim sayfasında toast mesajı göstemek için oluşturduğum component
 import React, { useState, useEffect } from 'react';
 import { MdCheckCircle, MdError } from 'react-icons/md';
 
 export default function Index({ message, type, onClose }) {
+
   const [visible, setVisible] = useState(true);
 
+  // Toast mesajının görüntülenmesi ve 2 saniye sonra akrandan kaldırılmasını sağlayan işlemler
   useEffect(() => {
     setVisible(true);
     const timer = setTimeout(() => {
@@ -16,6 +18,7 @@ export default function Index({ message, type, onClose }) {
 
   if (!visible) return null;
 
+  // Success ve error durumuna göre eklenecek olan class isimleri
   const toastStyles = {
     base: 'toast z-10 fixed top-4 left-1/2 transform -translate-x-1/2 w-80 mx-2 px-4 py-6 rounded-lg shadow-lg text-white flex items-center',
     error: 'bg-error',

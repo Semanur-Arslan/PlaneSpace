@@ -1,5 +1,7 @@
-const mongoose = require('mongoose');
+//MongoDb bağlantısını yaptım.
+const mongoose = require('mongoose'); // Mongoose, MongoDB ile etkileşim kurmamı sağlayan kütüphane.
 
+// Veritabanı bağlantısını asenkron olarak gerçekleştiren bir fonksiyon tanımladım.
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI,).then(() => console.log('MongoDB bağlantısı başarılı'))

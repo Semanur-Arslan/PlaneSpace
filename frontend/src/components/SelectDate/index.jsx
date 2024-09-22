@@ -1,3 +1,4 @@
+// Tarih seçimi için oluşturduğum select component
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -5,7 +6,7 @@ import { MdDateRange } from "react-icons/md";
 
 export default function Index({ icon: Icon = MdDateRange, selectedDate, onDateChange, rounded }) {
 
-    const [isOpen, setIsOpen] = useState(false);// Tarih seçici açılıp kapanma durumunu tutan state
+    const [isOpen, setIsOpen] = useState(false);
 
     // Input'un köşe yuvarlama değerlerini belirleyen değişken
     let roundedClass = 'rounded-3xl';

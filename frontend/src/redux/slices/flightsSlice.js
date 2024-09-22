@@ -29,7 +29,7 @@ const flightsSlice = createSlice({
         // Veriler sayfalandırılmış olduğu için her gelen veriyi bir önceki veriye ekleyip sayfa numarasını bir arttırdım
         builder
             .addCase(fetchFlights.pending, (state) => {
-                state.loading = true; // Yükleme başladığında durumu true yapmak için
+                state.loading = true; 
             })
             .addCase(fetchFlights.fulfilled, (state, action) => {
                 state.flights = [...state.flights, ...action.payload.flights];

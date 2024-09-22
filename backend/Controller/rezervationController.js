@@ -1,3 +1,7 @@
+// Bu kod ile rezervasyon işlemlerini yönetmek için bir API hazırladım; 
+// yeni rezervasyon ekleme,rezervasyonları listeleme, belirli bir rezervasyonu ID ile alma, mevcut rezervasyonu güncelleme 
+// ve rezervasyonu silme gibi işlevleri içeriyor.
+// Hata yönetimi için HTTP yanıtları ile sonuçlar döndürüyorum.
 const Rezervation = require('../Models/reservation'); 
 
 // Rezervasyon ekleme

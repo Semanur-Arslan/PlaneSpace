@@ -1,10 +1,13 @@
+// Kalkış ve varış noktası seçimi için olıuşturduğum select copmponent
 import { useState, useEffect, useRef } from "react";
 
 export default function Index({ icon: Icon, options, selectedOption, onOptionClick, rounded, fetchMore }) {
+
     const [isOpen, setIsOpen] = useState(false);
-    const [searchTerm, setSearchTerm] = useState(""); // Arama terimi için state
+    const [searchTerm, setSearchTerm] = useState("");
     const dropdownRef = useRef(null);
 
+    // Input'un köşe yuvarlama değerlerini belirleyen değişken
     let roundedClass = 'rounded-3xl';
     if (rounded === 'left') {
         roundedClass = 'rounded-l-3xl';
@@ -12,13 +15,13 @@ export default function Index({ icon: Icon, options, selectedOption, onOptionCli
         roundedClass = 'rounded-r-3xl';
     }
 
+    // Scroll tamamlandığında verileri tekrar çekmemiz için gerekli işlemler
     const handleScroll = (event) => {
         const { scrollTop, scrollHeight, clientHeight } = event.target;
         if (scrollTop + clientHeight >= scrollHeight - 5) {
             fetchMore();
         }
     };
-
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -74,7 +77,7 @@ export default function Index({ icon: Icon, options, selectedOption, onOptionCli
                                 onClick={() => {
                                     onOptionClick(option);
                                     setIsOpen(false);
-                                    setSearchTerm(""); // Seçim sonrası arama terimini sıfırla
+                                    setSearchTerm(""); 
                                 }}
                             >
                                 {option.country} - {option.publicName.english}

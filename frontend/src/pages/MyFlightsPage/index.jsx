@@ -8,14 +8,16 @@ export default function Index() {
   const dispatch = useDispatch();
   const { reservations, loading } = useSelector((state) => state.rezervations);
 
+  // Sayfa açıldığında rezervasyon verileri için API isteği yapacak olan fonksiyonu çağırdım.
   useEffect(() => {
     dispatch(fetchReservations());
   }, [dispatch]);
 
   return (
-    <div className='bg-secondary h-screen'>
+    <div className='bg-secondary h-full'>
       <h3 className='font-bold text-lg py-4'>My Flights</h3>
-      <div className="max-h-screen overflow-y-auto pb-12">
+      <div style={{ height: `calc(100vh)` }}  className="overflow-y-auto">
+      {/* Eğer rezervasyon verisi varsa map fonksiyonu ile her bir rezervasyon için oluşturduğum kartı render ettim. */}
       {loading ? (
           <p>Loading...</p>
         ) : reservations.length === 0 ? (

@@ -27,15 +27,14 @@ export default function Index() {
 
   // Uçuş verilerini ve parametre değerlerini Redux'tan aldım.
   const { flights, page, loading } = useSelector((state) => state.flights);
-  const {route, direction, scheduleDate} =useSelector((state) => state.flightParams)
+  const { route, direction, scheduleDate } = useSelector((state) => state.flightParams)
 
   //Uçuş verileri sayfa açıldığında ilk sayfası gelmektedir. İlk veri setindeki listenen uçuşlar tamamlnadığında 'load more' butonuna tıklanır ve bir sonraki sayfadaki verileri almak için api isteği gerçeklştirdim
   //Diğer sayfalara geçildiğinde aynı parametreler ile devam etmesi için parametreleri ekledim.
   const loadMoreFlights = () => {
-    const nextPage = page + 1; 
+    const nextPage = page + 1;
     dispatch(fetchFlights({ page: nextPage, direction, route, scheduleDate }));
-};
-
+  };
 
   // Anasayfada soldaki kart yapısı için veriseti oluşturdum.
   const routingCardsData = [
@@ -62,21 +61,20 @@ export default function Index() {
     },
   ];
 
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
       <div className="col-span-1 md:col-span-5">
         <FlightSelection />
         <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
           <div className="col-span-1 md:col-span-3  " >
-            {/* Eğer uçuş verisi varsa map fonksiyonu ile her bir uçuş için bir kart oluşturdum. */}
-            <div className="max-h-screen overflow-y-auto">
+            {/* Eğer uçuş verisi varsa map fonksiyonu ile her bir uçuş için oluşturduğum kartı render ettim. */}
+            <div style={{ height: `calc(100vh)` }} className=" overflow-y-auto">
               <div className="p-2 text-center text-lightGray">
                 {loading && flights.length === 0 && <div >Loading...</div>}
                 {!loading && flights.length === 0 && <div >Not Available</div>}
               </div>
-              {flights.map(flight => (
-                <FlightCard key={flight.id} flight={flight} />
+              {flights.map((flight, index) => (
+                <FlightCard key={`${flight.id}-${index}`} flight={flight} />
               ))}
               {loading && flights.length > 0 && <div className="p-2 text-center text-lightGray">Loading more flights...</div>}
               {

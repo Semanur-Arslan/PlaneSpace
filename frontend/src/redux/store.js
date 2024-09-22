@@ -1,4 +1,4 @@
-
+// Redux store'unu yapılandırarak uygulamadaki farklı veri kesimlerini yöneten reducer'ları bir araya getirdim.
 import { configureStore } from '@reduxjs/toolkit';
 import destinationsReducer from './slices/destinationsSlice'; // Hedefler verilerini yöneten reducer
 import flightsReducer from './slices/flightsSlice'; // Uçuş verilerini yöneten reducer

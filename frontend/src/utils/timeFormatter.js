@@ -1,5 +1,4 @@
 //Saat verilerini 12 saat formatına dönüştüren , tüm uygulama genelinde kullanabildiğim fonksiyon
-
 export default function formatTime(timeString) {
 
     if (!timeString) {

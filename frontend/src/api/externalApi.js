@@ -1,3 +1,5 @@
+// Uçuşlar API'sine istek göndermek için Axios tabanlı bir istemci oluşturdum.
+// Uçuş ile ilgili verileri almak için gereçkleştireceğim API isteklerini tek bir dosyadan yönettim.
 import axios from 'axios';
 
 const api = axios.create({
