@@ -2,8 +2,8 @@
 
 Bu proje, Amsterdam Schiphol Havalimanı'na gelen ve giden uçuşların listesini görüntülemenizi, filtrelemenizi ve bu uçuşlar için rezervasyon yapmanızı sağlayan bir uçuş rezervasyon sistemidir. Proje, kullanıcıların uçuş bilgilerini sorgulamalarını, rezervasyon yapmalarını ve yapılan rezervasyonları yönetmelerini amaçlamaktadır.
 
-![PlaneSpace](applicationImages/web.gif)
-![PlaneSpace](applicationImages/mobile.gif)
+![PlaneSpace](applicationImages/Web.gif)
+![PlaneSpace](applicationImages/Mobile.gif)
 
 ## Özellikler
 
