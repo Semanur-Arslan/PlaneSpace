@@ -51,6 +51,7 @@ Bu proje, Amsterdam Schiphol Havalimanı'na gelen ve giden uçuşların listesin
 - 📦 Axios
 
 ### Backend
+- 🟢 Node.js
 - 🖥️ Express
 - 🗄️ Mongoose
 - ⚙️ Dotenv
