@@ -4,37 +4,37 @@ Bu proje, Amsterdam Schiphol Havalimanı'na gelen ve giden uçuşların listesin
 
 ## Özellikler
 
-### Uçuş Bilgileri Listesi
+#### Uçuş Bilgileri Listesi
 - Anasayfada uçuş bilgileri listelenir ve kullanıcılar kalkış veya varış noktası, tarih ve uçuş yönüne göre filtreleme yapabilir.
 
-### Dinamik Nokta Atamaları
+#### Dinamik Nokta Atamaları
 - Kalkış noktası seçilirse iniş noktası Amsterdam olarak atanır.
 - İniş noktası seçilirse kalkış noktası Amsterdam Schiphol Havalimanı olarak atanır.
 
-### Tarih ve Yön Filtreleme
+#### Tarih ve Yön Filtreleme
 - Uçuşlar, sadece yöne ya da hem yön hem de tarihe göre filtrelenebilir.
 
-### Rezervasyon Uyarısı
+#### Rezervasyon Uyarısı
 - Geçmiş tarihli uçuşlara rezervasyon yapılamaz.
 - Geçmiş tarihli bir uçuş seçildiğinde kullanıcıya uyarı verilir.
 
-### Rezervasyon Yönetimi
+#### Rezervasyon Yönetimi
 - Kullanıcılar gelecekteki uçuşlar için rezervasyon yapabilir.
 - "Rezervasyonlarım" sayfasından yapılan rezervasyonları görüntüleyebilir veya silebilir.
 
-### Responsive Tasarım
+#### Responsive Tasarım
 - Tüm cihazlarda kullanılabilirlik sağlanmıştır, mobil ve masaüstü cihazlarla uyumludur.
 
-### API Entegrasyonu
+#### API Entegrasyonu
 - Uçuş bilgileri ve kalkış-iniş noktaları, **developer.schiphol.nl** tarafından sağlanan API ile alınmaktadır.
 
-### Sayfalama
+#### Sayfalama
 - API, başlangıçta 20 uçuş bilgisi sağlamaktadır ve kullanıcı işlemlerine göre daha fazla veri sayfalandırılarak yüklenir.
 
-### Backend Entegrasyonu
+#### Backend Entegrasyonu
 - Node.js ile oluşturulmuş backend sistemi aracılığıyla rezervasyon kaydetme, listeleme ve silme işlemleri MongoDB üzerinde gerçekleştirilir.
 
-### Redux ile Veri Yönetimi
+#### Redux ile Veri Yönetimi
 - Uygulamanın genel veri yönetimi Redux kullanılarak sağlanmıştır.
 - API'den alınan veriler Redux store'a kaydedilir ve gerekli durumlarda veriler güncellenir.
 
