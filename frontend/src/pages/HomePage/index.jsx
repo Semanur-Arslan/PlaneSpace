@@ -78,7 +78,7 @@ export default function Index() {
               ))}
               {loading && flights.length > 0 && <div className="p-2 text-center text-lightGray">Loading more flights...</div>}
               {
-                flights && flights.length > 0 && !loading &&
+                flights && flights.length > 19 && !loading &&
                 <div>
                   <div className='flex justify-center mb-12 text-sm text-darkGray font-bold  '>
                     <button onClick={loadMoreFlights} className='border rounded-lg border-darkGray p-2 hover:bg-darkGray hover:text-white'>
