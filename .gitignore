@@ -10,9 +10,6 @@ backend/npm-debug.log
 frontend/build/
 backend/build/
 
-# Tailwind ve diğer cache dosyaları
-frontend/tailwind.config.js
-
 # Environment dosyaları
 frontend/.env
 backend/.env
