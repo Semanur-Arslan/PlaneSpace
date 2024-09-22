@@ -44,16 +44,16 @@ Bu proje, Amsterdam Schiphol Havalimanı'na gelen ve giden uçuşların listesin
 ## Kullandığım Teknolojiler
 
 ### Frontend
-- React
-- Redux
-- React Router
-- Tailwind CSS
-- Axios
+- 🟢 React
+- 🔄 Redux
+- 🛣️ React Router
+- 🎨 Tailwind CSS
+- 📦 Axios
 
 ### Backend
-- Express
-- Mongoose
-- Dotenv
+- 🖥️ Express
+- 🗄️ Mongoose
+- ⚙️ Dotenv
 
 ## Projeyi Başlatmak İçin Adımlar
 
