@@ -1,4 +1,4 @@
-// Rezervasyon kartı içerisindeki extra kutular için component oluşturdum
+// Rezervasyon kartı içerisindeki extra kutular için oluşturduğum component
 export default function FlightBox({ price, label }) {
     return (
         <div className="border border-mediumGray bg-gray-100 rounded-lg h-full flex flex-col items-center justify-center py-2 overflow-hidden">

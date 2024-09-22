@@ -5,7 +5,6 @@ import { fetchReservationsAPI } from '../../api/backendApi';
 export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async (_, { rejectWithValue }) => {
     try {
         const data = await fetchReservationsAPI(); 
-        console.log(data);
         return data;
     } catch (error) {
         return rejectWithValue(error.message);

@@ -1,15 +1,21 @@
-import { useState, useEffect } from "react";
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { fetchReservations } from "../../redux/slices/reservationSlice";
 import formatDate from "../../utils/dateFormatter";
 import formatTime from "../../utils/timeFormatter";
+import Toast from '../ToastMessage/index';
 import FlightExtraBox from '../../components/FlightExtraBox/index'
-import { IoIosAirplane } from "react-icons/io";
+import { deleteReservationAPI } from "../../api/backendApi";
 import { IoIosArrowDown } from "react-icons/io";
-import AirlineLogo from '../../images/airline-logo.jpg'
+import AirlineLogo from '../../images/airline-logo.jpg';
 
-
-//Burada props olarak rezervasyon verisini aldım.
+//Props olarak rezervasyon verisini aldım.
 export default function Index({ reservation }) {
+
+    const dispatch = useDispatch();
+    const ref = useRef(null);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [toast, setToast] = useState({ message: '', type: '' });
 
     //Rezervasyon içerisindeki kullanacağım değerleri tanımladım.
     const {
@@ -23,18 +29,32 @@ export default function Index({ reservation }) {
     } = reservation;
 
 
-    //Kart yüksekliği kontrolü için state tanımladım.
-    const [isExpanded, setIsExpanded] = useState(false);
-    const ref = useRef(null);
+    //Silme İşlemleri
+    const handleDelete = async () => {
+        try {
+            const response = await deleteReservationAPI(reservation._id);
+            showToast(response.message || 'Reservation deleted', 'success');
+            setTimeout(() => {
+                dispatch(fetchReservations());
+            }, 2000);
 
-    //Kart yüksekliği için fonksiyon
+        } catch (error) {
+            showToast(error.message || 'Reservation could not be deleted', 'error');
+        }
+    };
+
+    //Toast Mesajı işlemleri
+    const showToast = (msg, type) => { setToast({ message: msg, type }) };
+    const closeToast = () => { setToast({ message: '', type: '' }) };
+
+    // Show-Hide kart yapısı için işlemler
     const toggleDetails = () => {
         setIsExpanded(!isExpanded);
     };
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (ref.current && !ref.current.contains(event.target)) {
-                setIsExpanded(false); // Dışarı tıklandığında kartı kapatıyorum
+                setIsExpanded(false);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
@@ -54,16 +74,19 @@ export default function Index({ reservation }) {
     return (
         <>
             <div ref={ref} className='relative bg-white p-2 md:p-4 rounded-lg rounded-lg my-4'>
-                <div className='grid grid-cols-3 justify-items-start content-center gap-8 md:gap-1'>
+                <div className='grid grid-cols-3 justify-items-start content-center gap-8 md:gap-4'>
                     <div className="col-span-3 md:col-span-2 flex justify-center items-center space-x-4 md:space-x-8 w-full">
                         <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-mediumGray overflow-hidden flex justify-center items-center">
                             <img src={AirlineLogo} alt="" className="w-full h-full object-cover" />
                         </div>
                         <div className="w-full">
-                            <div>
+                            <div className="flex justify-between items-center">
                                 <h5 className="text-base md:text-xl py-2">
                                     {estimatedLandingTime ? adjustTime(estimatedLandingTime, -2) : formatTime(actualOffBlockTime)} -  {actualOffBlockTime ? adjustTime(actualOffBlockTime, 2) : formatTime(estimatedLandingTime)}
                                 </h5>
+                                <div>
+                                    <button onClick={handleDelete} className="py-1 px-4 border border-error rounded-xl text-sm text-error font-semibold hover:text-white hover:bg-error transition">Delete</button>
+                                </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 md:pt-4 gap-2 md:gap-16">
                                 <div className="text-sm font-semibold flex flex-row md:flex-col justify-between">
@@ -88,18 +111,13 @@ export default function Index({ reservation }) {
                             </div>
                         </div>
                     </div>
-
-                    <div className="col-span-3 md:col-span-1 grid grid-cols-5 gap-2 lg:gap-4 w-full">
+                    <div className="col-span-3 md:col-span-1 grid grid-cols-4 gap-2 lg:gap-4 w-full">
                         <FlightExtraBox price="$156" label="Main" />
                         <FlightExtraBox price="$204" label="Comfort+" />
                         <FlightExtraBox />
                         <FlightExtraBox price="$386" label="First" />
-                        <FlightExtraBox />
                     </div>
-
-
                 </div>
-
                 <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? "max-h-40" : "max-h-0 "}`}>
                     {isExpanded && (
                         <div className="flex flex-col justify-start py-4 text-lightGray text-sm md:text-sm pt-8">
@@ -132,14 +150,11 @@ export default function Index({ reservation }) {
                                     </p>
                                 </div>
                             </div>
-
                         </div>
                     )}
                 </div>
-
             </div>
-
-
+            {toast.message && <Toast message={toast.message} type={toast.type} onClose={closeToast} />}
         </>
     )
 }

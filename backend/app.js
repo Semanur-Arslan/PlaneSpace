@@ -1,24 +1,25 @@
 const express = require('express');
 const connectDB = require('./Config/db');
 const dotenv = require('dotenv');
-const cors = require('cors'); 
+const cors = require('cors');
 const rezervationRoutes = require('./Route/rezervationRoutes')
 
-// .env dosyasını yükle
+// .env dosyasını yüklüyoruz
 dotenv.config();
 
-// MongoDB'ye bağlan
+// MongoDB'ye bağlanıyoruz
 connectDB();
 
+// Express uygulamasını başlatıyoruz
 const app = express();
 
-// CORS'u ayarla
-app.use(cors()); // Tüm kaynaklar için CORS'u etkinleştir
+// CORS'u ayarlarını ekliyoruz
+app.use(cors());
 
-// JSON formatını kabul et
+// JSON formatını kabul etmek için ekledim
 app.use(express.json());
 
-// Rezervasyon route'larını kullan
+// Rezervasyon route'larını kullanmak için tanımladım
 app.use('/api/rezervations', rezervationRoutes);
 
 

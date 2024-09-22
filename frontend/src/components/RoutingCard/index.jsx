@@ -1,4 +1,4 @@
-
+// Anasayfa sağında bulunan kartlar için oluşturduğum component
 export default function Index({ src, alt, overlayColor, Icon, text }) {
     return (
         <div className="relative h-64">

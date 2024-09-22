@@ -1,3 +1,4 @@
+// Rezervasyonlarla ilgili API rotalarını tanımladım.
 const express = require('express');
 const router = express.Router();
 const {

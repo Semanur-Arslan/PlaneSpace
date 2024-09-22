@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Rezervasyon verilerini tanımlayan şema oluşturdum.
 const rezervationSchema = new mongoose.Schema({
     actualOffBlockTime: { type: String, required: false },
     estimatedLandingTime: { type: String, required: false },
@@ -12,7 +13,7 @@ const rezervationSchema = new mongoose.Schema({
 });
 
 
-// Modeli kontrol ederek tanımla
+// Modeli kontrol ederek tanımlıyoruz
 const Rezervation = mongoose.models.Rezervation || mongoose.model('Rezervation', rezervationSchema);
 
 module.exports = Rezervation;
