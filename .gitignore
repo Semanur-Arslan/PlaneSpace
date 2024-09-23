@@ -15,4 +15,4 @@ frontend/.env
 backend/.env
 
 # Uygulama görüntüleri
-/applicationImages
+applicationImages
